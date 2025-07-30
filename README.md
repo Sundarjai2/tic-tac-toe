@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# tic-tac-toe
-=======
 # Tic-Tac-Toe Game (JavaScript Version)
 
 A simple, accessible, and visually enhanced Tic-Tac-Toe game implemented using HTML, CSS, and JavaScript.
@@ -51,4 +48,3 @@ Created by **Sermasundar Jeyadoss**
 ---
 
 Enjoy playing! 🎯
->>>>>>> c8f1fae (Initial commit: Tic Tac Toe game)
