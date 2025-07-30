@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tic Tac Toe Game - Accessible Version | Sermasundar Jeyadoss</title>
+    <meta
+      name="description"
+      content="Play Tic Tac Toe online with 2 players or against the computer. Fully accessible with keyboard, screen readers, and responsive design."
+    />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <!-- Main container for the game -->
+    <main role="main" class="game">
+      <!-- Game mode selection screen -->
+      <section
+        id="mode-select-screen"
+        class="mode-select"
+        aria-label="Game Mode Selection"
+      >
+        <h1 class="game__title" tabindex="-1">Tic Tac Toe</h1>
+        <p class="mode-select__prompt">Choose your game mode</p>
+
+        <!-- Buttons to select game mode -->
+        <div class="mode-select__buttons">
+          <button
+            id="btn-human"
+            class="mode-select__button"
+            type="button"
+            aria-pressed="false"
+          >
+            2 Players
+          </button>
+          <button
+            id="btn-computer"
+            class="mode-select__button"
+            type="button"
+            aria-pressed="false"
+          >
+            Vs Computer
+          </button>
+        </div>
+
+        <!-- Difficulty selection for computer mode, initially hidden by JS -->
+        <div
+          id="difficulty-select"
+          class="difficulty-select"
+          aria-label="Computer Difficulty Selection"
+          style="display: none"
+        >
+          <p class="difficulty-select__prompt">Choose difficulty</p>
+          <div class="difficulty-select__buttons">
+            <button
+              id="btn-easy"
+              class="difficulty-select__button"
+              type="button"
+              aria-pressed="false"
+            >
+              Easy
+            </button>
+            <button
+              id="btn-medium"
+              class="difficulty-select__button"
+              type="button"
+              aria-pressed="false"
+            >
+              Medium
+            </button>
+            <button
+              id="btn-hard"
+              class="difficulty-select__button"
+              type="button"
+              aria-pressed="false"
+            >
+              Hard
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Game screen, initially hidden -->
+      <section
+        id="game-screen"
+        class="game-screen"
+        aria-label="Tic Tac Toe Game"
+      >
+        <h2
+          id="game-title"
+          class="game-screen__title"
+          aria-live="polite"
+          aria-atomic="true"
+          tabindex="-1"
+        >
+          Tic Tac Toe
+        </h2>
+
+        <!-- Tic Tac Toe board, buttons for each cell -->
+        <div class="board" role="grid" aria-label="Tic Tac Toe Board">
+          <div class="board__row" role="row">
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 1, Column 1"
+              data-index="0"
+            ></button>
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 1, Column 2"
+              data-index="1"
+            ></button>
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 1, Column 3"
+              data-index="2"
+            ></button>
+          </div>
+          <div class="board__row" role="row">
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 2, Column 1"
+              data-index="3"
+            ></button>
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 2, Column 2"
+              data-index="4"
+            ></button>
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 2, Column 3"
+              data-index="5"
+            ></button>
+          </div>
+          <div class="board__row" role="row">
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 3, Column 1"
+              data-index="6"
+            ></button>
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 3, Column 2"
+              data-index="7"
+            ></button>
+            <button
+              class="board__cell"
+              role="gridcell"
+              aria-label="Row 3, Column 3"
+              data-index="8"
+            ></button>
+          </div>
+        </div>
+
+        <!-- Game status and control buttons -->
+        <div class="game-screen__info">
+          <p
+            id="game-status"
+            class="game__status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            Player X's turn
+          </p>
+          <div class="game-screen__buttons">
+            <button id="btn-reset" class="game-screen__button" type="button">
+              Reset
+            </button>
+            <button
+              id="btn-undo"
+              class="game-screen__button"
+              type="button"
+              aria-label="Undo last move"
+              title="Undo"
+            >
+              Undo
+            </button>
+            <button id="btn-back" class="game-screen__button" type="button">
+              Back
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Main game logic script -->
+    <script src="scripts/ticTacToe.js"></script>
+  </body>
+</html>

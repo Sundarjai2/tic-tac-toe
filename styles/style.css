@@ -1,0 +1,205 @@
+/* ===== Reset & Box Sizing ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Ensure padding/border are included in element width/height */
+}
+
+/* ===== Body & Layout ===== */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f0f5; /* Light subtle background */
+  margin: 0;
+  padding: 2rem;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* ===== Main Game Container ===== */
+.game {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* Slightly stronger shadow for depth */
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.game:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18); /* Lift effect on hover */
+}
+
+/* ===== Text Prompts ===== */
+.mode-select__prompt,
+.difficulty-select__prompt {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #444; /* Slightly softer text color */
+}
+
+/* ===== Hidden Screens ===== */
+.difficulty-select,
+.game-screen,
+#btn-undo {
+  display: none; /* Show/hide controlled by JS */
+}
+
+/* ===== Button Groups Container ===== */
+.mode-select__buttons,
+.difficulty-select__buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== Buttons Base Style ===== */
+.mode-select__button,
+.difficulty-select__button,
+.game-screen__button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.4); /* Soft shadow for depth */
+  outline-offset: 2px;
+}
+
+/* ===== Button Hover & Focus States ===== */
+.mode-select__button:hover:not([aria-pressed="true"]),
+.difficulty-select__button:hover:not([aria-pressed="true"]),
+.game-screen__button:hover {
+  background: #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.6); /* Stronger shadow on hover */
+}
+
+.mode-select__button:focus-visible,
+.difficulty-select__button:focus-visible,
+.game-screen__button:focus-visible {
+  outline: 3px solid #0056b3; /* Clear focus ring for keyboard navigation */
+  outline-offset: 2px;
+}
+
+/* ===== Selected Button State ===== */
+.mode-select__button[aria-pressed="true"],
+.difficulty-select__button[aria-pressed="true"] {
+  background: #0056b3;
+  cursor: default;
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.6);
+}
+
+/* ===== Game Board Styles ===== */
+.board {
+  display: inline-block;
+  border: 3px solid #007bff;
+  border-radius: 12px;
+  user-select: none;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* subtle glow */
+}
+
+.board__row {
+  display: flex;
+}
+
+/* ===== Individual Cells ===== */
+.board__cell {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #007bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #007bff;
+  cursor: pointer;
+  background: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  outline-offset: 3px;
+  outline: none;
+  user-select: none;
+  box-shadow: inset 0 0 6px rgba(0, 123, 255, 0.1); /* subtle inner shadow */
+}
+
+/* Hover effect only on enabled cells */
+.board__cell:hover:not(.board__cell--disabled) {
+  background-color: #e0e7ff; /* Light blue highlight */
+  color: #004085; /* Darker text for contrast */
+}
+
+/* Disabled cells style */
+.board__cell--disabled {
+  cursor: default;
+  color: #6c757d; /* muted gray */
+  background-color: #f8f9fa; /* light gray */
+  box-shadow: none;
+}
+
+/* Winning cells highlight */
+.board__cell--win {
+  background-color: #d4edda; /* light green */
+  color: #155724; /* dark green */
+  font-size: 3.5rem;
+  animation: winnerGlow 1s ease infinite alternate;
+  box-shadow: 0 0 15px #28a745; /* glowing effect */
+}
+
+/* ===== Winner Glow Animation ===== */
+@keyframes winnerGlow {
+  0% {
+    box-shadow: 0 0 5px #28a745;
+  }
+  100% {
+    box-shadow: 0 0 15px #28a745;
+  }
+}
+
+/* ===== Game Info Section ===== */
+.game-screen__info {
+  margin-top: 1.5rem;
+}
+
+/* Game status text */
+.game__status {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  min-height: 1.5rem; /* reserve space for status updates */
+  color: #333;
+}
+
+/* ===== Button Groups on Game Screen ===== */
+.game-screen__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.game-screen__button {
+  flex: 1;
+  margin: 0 0.25rem;
+  user-select: none;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 400px) {
+  .board__cell {
+    width: 60px;
+    height: 60px;
+    font-size: 2.2rem;
+  }
+
+  .game {
+    max-width: 320px;
+    padding: 1.5rem;
+  }
+}
